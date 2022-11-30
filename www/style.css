@@ -1,6 +1,7 @@
 :root {
     --primary_color: #70a9ff;
     --border_color: rgb(146, 146, 146);
+    --error_color: rgb(249, 117, 117);
 }
 
 /**{
@@ -76,4 +77,14 @@ li:hover{
 
 thead{
     background-color: var(--primary_color);
+}
+
+.small{
+    color: var(--error_color);
+    margin: 0;
+    padding: 0;
+}
+
+.errorColor{
+    color: var(--error_color);
 }

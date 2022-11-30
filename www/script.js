@@ -4,7 +4,7 @@ let drawCategorias = (data) => {
       let parent = document.getElementsByTagName('ul')[0]
       let child = document.createElement('li')
       child.setAttribute("id", category.id);
-        child.setAttribute("onclick", `clickCategory(${category.id})`);
+      child.setAttribute("onclick", `clickCategory(${category.id})`);
       // child.innerText = JSON.stringify(category)
       console.log(category.id)
       child.innerText = category.name
