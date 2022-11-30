@@ -29,7 +29,27 @@ let drawTable = data =>{
       td = document.createElement('td')
       td.innerText = sites.createdAt
       tr.appendChild(td)
+      //Created Icons
+      td = document.createElement('td')
+          //folder 
+      let a = document.createElement('a')
+      a.href = sites.url
+      let i = document.createElement('i')
+      i.setAttribute("class","fa-regular fa-folder-open")
+      a.appendChild(i)
+      td.appendChild(a)
 
+          //trash 
+      i = document.createElement('i')
+      i.setAttribute("class","fa-solid fa-trash-can")
+      td.appendChild(i)
+
+          //edit 
+      i = document.createElement('i')
+      i.setAttribute("class","fa-solid fa-pencil")
+      td.appendChild(i)
+
+      tr.appendChild(td)
       parent.appendChild(tr)
     })
 }

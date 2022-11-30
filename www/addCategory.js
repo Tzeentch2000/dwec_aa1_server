@@ -7,6 +7,10 @@ const insertCategory = async() => {
     let newCategory = document.getElementById('categoryName')
     let parent = document.getElementsByTagName('ul')[0]
     let child = document.createElement('li')
+    fetch("http://localhost:3000/categories").then(res => res.json()).then(data => {
+        child.setAttribute("id", data.length+1);
+        child.setAttribute("onclick", `clickCategory(${data.length+1})`);
+    });
     child.innerText = newCategory.value
     parent.appendChild(child);
 
@@ -24,6 +28,13 @@ const insertCategory = async() => {
     newCategory.value = ''
 }
 
+const closeModal = () =>{
+    //Para que quede mejor cuando cierras el modal(sin timeout queda peor)
+    setTimeout(() => {
+        document.getElementsByClassName('small')[0].classList.add("d-none")
+        document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
+      }, "500")
+}
 
 const saveCategory = () =>{
     let newCategory = document.getElementById('categoryName')
@@ -32,9 +43,7 @@ const saveCategory = () =>{
         document.querySelector('label[for="categoryName"]').classList.add('errorColor')
         newCategory.value = ''
     } else {
-        document.getElementsByClassName('small')[0].classList.add("d-none")
-        document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
-
+       closeModal()
         //Hide boostrap modal
         var myModalEl = document.getElementById('addCategory')
         var modal = bootstrap.Modal.getInstance(myModalEl)

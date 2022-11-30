@@ -88,3 +88,7 @@ thead{
 .errorColor{
     color: var(--error_color);
 }
+
+i:hover{
+    cursor: pointer;
+}
