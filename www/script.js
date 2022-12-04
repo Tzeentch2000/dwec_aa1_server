@@ -6,7 +6,7 @@ let drawCategorias = (data) => {
       child.setAttribute("id", category.id);
       child.setAttribute("onclick", `clickCategory(${category.id})`);
       // child.innerText = JSON.stringify(category)
-      console.log(category.id)
+      //console.log(category.id)
       child.innerText = category.name
       parent.appendChild(child)
     })
@@ -17,6 +17,7 @@ let drawTable = data =>{
     parent.innerHTML = ""
     data.forEach(sites => {
       let tr = document.createElement('tr')
+      tr.id = `tr-${sites.id}`
       //Site
       let td = document.createElement('td')
       td.innerText = sites.name
@@ -43,6 +44,9 @@ let drawTable = data =>{
       i = document.createElement('i')
       i.setAttribute("class","fa-solid fa-trash-can")
       td.appendChild(i)
+      i.setAttribute("data-bs-toggle","modal")
+      i.setAttribute("data-bs-target","#deleteModal")
+      i.setAttribute("onclick", `putDeleteEvent(${sites.id},'${sites.name}')`)
 
           //edit 
       i = document.createElement('i')
@@ -59,7 +63,17 @@ let clickCategory = (id) => {
   fetch(`http://localhost:3000/categories/${id}`)
       .then(res => res.json())
       .then(data => drawTable(data));
+  let selectedCategory = document.getElementsByClassName('selected-category')[0]
+  if(selectedCategory !== undefined){
+    selectedCategory.classList.remove("selected-category")
+  }
+  document.getElementById(id).classList.add('selected-category')
 }
+
+console.log(window.location.href)
 
 
 fetch("http://localhost:3000/categories").then(res => res.json()).then(data => drawCategorias(data));
+
+
+

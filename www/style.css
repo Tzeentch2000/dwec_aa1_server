@@ -46,6 +46,10 @@ body{
     padding: 1rem 3rem;
 }
 
+.selected-category{
+    background-color: var(--primary_color);
+}
+
 .categorias{
     border: 1px solid black;
     max-width: 250px;
@@ -89,6 +93,16 @@ thead{
     color: var(--error_color);
 }
 
+i{
+    margin: 0 .5rem;
+    color: black
+}
+
 i:hover{
     cursor: pointer;
+}
+
+.fa-trash-can:hover{
+    color: red;
+    transition-duration: .3s;
 }

@@ -28,27 +28,30 @@ const insertCategory = async() => {
     newCategory.value = ''
 }
 
-const closeModal = () =>{
-    //Para que quede mejor cuando cierras el modal(sin timeout queda peor)
-    setTimeout(() => {
+const checkOk = () =>{
         document.getElementsByClassName('small')[0].classList.add("d-none")
         document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
-      }, "500")
 }
 
-const saveCategory = () =>{
+const checkCategory = () =>{
     let newCategory = document.getElementById('categoryName')
     if(checkEmpty(newCategory.value)){
         document.getElementsByClassName('small')[0].classList.remove("d-none")
         document.querySelector('label[for="categoryName"]').classList.add('errorColor')
         newCategory.value = ''
+        return false
     } else {
-       closeModal()
+        checkOk()
+        return true
+    }
+}
+
+const saveCategory = () => {
+    if(checkCategory()){
         //Hide boostrap modal
-        var myModalEl = document.getElementById('addCategory')
-        var modal = bootstrap.Modal.getInstance(myModalEl)
+        const myModalEl = document.getElementById('addCategory')
+        const modal = bootstrap.Modal.getInstance(myModalEl)
         modal.hide()
-    
         insertCategory()
     }
 }
