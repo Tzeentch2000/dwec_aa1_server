@@ -3,6 +3,7 @@ const removeSiteJs = (id) =>{
     tr.remove()
 }
 
+//Eliminar un site
 const deleteSite = async(id) =>{
         try{
             const url = `http://localhost:3000/sites/${id}`
@@ -16,6 +17,7 @@ const deleteSite = async(id) =>{
         }
 }
 
+//Poner en el modal de borrar los datos correspondientes
 const putDeleteEvent = (id,nameTittle) => {
     console.log('bine')
     const aceptModalBtn = document.getElementById('acceptDeleteModal')

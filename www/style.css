@@ -106,3 +106,7 @@ i:hover{
     color: red;
     transition-duration: .3s;
 }
+
+.fa-magnifying-glass{
+    color: white;
+}

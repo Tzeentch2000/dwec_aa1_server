@@ -22,7 +22,17 @@
         <div class="col-md-4 text-center">
           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategory">Add categorie</button>
           <button class="btn btn-secondary">Add site</button>
-        
+
+          <!--CATEGORY SEARCH BAR-->
+          <div class="input-group justify-content-center mt-4">
+            <div class="form-outline">
+              <input type="search" id="searchCategory" class="form-control" placeholder="Search category..."/>
+            </div>
+            <button class="btn btn-primary" onclick="searchCategory()">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+
           <div class="categorias mt-4">
             <h2>Categorías</h2>
             <ul></ul>

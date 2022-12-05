@@ -1,3 +1,4 @@
+//Escribir las categorías 
 let drawCategorias = (data) => {
     //console.log(data);
     data.forEach(category => {
@@ -12,6 +13,7 @@ let drawCategorias = (data) => {
     })
 }
 
+//Printar sites en la tabla cuando clicke en una categoría
 let drawTable = data =>{
     let parent = document.getElementsByTagName('tbody')[0]
     parent.innerHTML = ""
@@ -46,7 +48,7 @@ let drawTable = data =>{
       td.appendChild(i)
       i.setAttribute("data-bs-toggle","modal")
       i.setAttribute("data-bs-target","#deleteModal")
-      i.setAttribute("onclick", `putDeleteEvent(${sites.id},'${sites.name}')`)
+      i.setAttribute("onclick", `putDeleteEvent(${sites.id},"${sites.name}")`)
 
           //edit 
       i = document.createElement('i')
@@ -58,7 +60,7 @@ let drawTable = data =>{
     })
 }
 
-
+//Evento de clickado de categoría
 let clickCategory = (id) => {
   fetch(`http://localhost:3000/categories/${id}`)
       .then(res => res.json())
@@ -69,11 +71,25 @@ let clickCategory = (id) => {
   }
   document.getElementById(id).classList.add('selected-category')
 }
-
-console.log(window.location.href)
-
-
+//console.log(window.location.href)
+//Al cargar la página que cargue las categorías
 fetch("http://localhost:3000/categories").then(res => res.json()).then(data => drawCategorias(data));
+
+//Buscar categoría
+const searchCategory = async() => {
+  document.getElementsByTagName('ul')[0].innerHTML = ""
+  const value = document.getElementById('searchCategory').value
+  if(value != ""){
+    const url = 'http://localhost:3000/categories'
+    const respuesta = await fetch(url)
+    const resultado = await respuesta.json()
+    const categories = resultado.filter(item => item.name.startsWith(value))
+    drawCategorias(categories)
+  } else {
+    fetch("http://localhost:3000/categories").then(res => res.json()).then(data => drawCategorias(data));
+  }
+}
+
 
 
 

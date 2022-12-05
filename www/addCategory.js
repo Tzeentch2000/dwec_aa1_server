@@ -3,6 +3,7 @@ const checkEmpty = () =>{
     return document.getElementById('categoryName').value.match(/^\s*$/)
 }
 
+//Insertar la categoría
 const insertCategory = async() => {
     let newCategory = document.getElementById('categoryName')
     let parent = document.getElementsByTagName('ul')[0]
@@ -27,12 +28,13 @@ const insertCategory = async() => {
     console.log(resultado)
     newCategory.value = ''
 }
-
+//Volver negros los colores del formulario
 const checkOk = () =>{
         document.getElementsByClassName('small')[0].classList.add("d-none")
         document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
 }
 
+//Comprobar si no hay datos vacíos
 const checkCategory = () =>{
     let newCategory = document.getElementById('categoryName')
     if(checkEmpty(newCategory.value)){
