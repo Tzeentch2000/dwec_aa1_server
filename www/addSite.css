@@ -62,6 +62,10 @@ section .divBtn {
     padding: 10px;
 }
 
+section .divBtn button:hover{
+    cursor: pointer;
+}
+
 section .divBtn .cancelar{
     background-color: red;
     color: white;

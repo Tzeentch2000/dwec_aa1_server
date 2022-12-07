@@ -10,9 +10,15 @@ function sendForm() {
     let password = formulario1.elements['password'];
     let description = formulario1.elements['description'];
 
-    alert(name.value+" "+url.value + " " + user.value + " " + password.value + " " + description.value);
+    // alert(name.value+" "+url.value + " " + user.value + " " + password.value + " " + description.value);
 
-    document.getElementById("formulario").submit();
+    // document.getElementById("formulario").submit();
+    goToIndex();
+
+}
+
+function goToIndex(){
+    window.location='index.html';
 }
 
 
