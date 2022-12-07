@@ -1,7 +1,14 @@
-const models = require("../../db/models");
+// const models = require("../../db/models");
 
 window.onload = () => {
+    console.log();
 
+    // (A) GET THE PARAMETERS
+    let params = new URLSearchParams(window.location.search);
+    categoria = params.get("categoria");
+    
+    // (B) IT WORKS!
+    console.log(categoria);
 
 };
 
