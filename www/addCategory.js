@@ -59,3 +59,9 @@ const saveCategory = () => {
     }
 }
 
+const visitPage = () =>{
+    let url = window.location.href;
+    alert(url);
+    alert(window.glob);
+    window.location='addSite.html';
+}
