@@ -1,4 +1,9 @@
-const models = require("../../db/models")
+const models = require("../../db/models");
+
+window.onload = () => {
+
+
+};
 
 function sendForm() {
 
@@ -17,8 +22,8 @@ function sendForm() {
 
 }
 
-function goToIndex(){
-    window.location='index.html';
+function goToIndex() {
+    window.location = 'index.html';
 }
 
 

@@ -1,4 +1,3 @@
-
 const checkEmpty = () =>{
     return document.getElementById('categoryName').value.match(/^\s*$/)
 }
@@ -6,14 +5,6 @@ const checkEmpty = () =>{
 //Insertar la categoría
 const insertCategory = async() => {
     let newCategory = document.getElementById('categoryName')
-    let parent = document.getElementsByTagName('ul')[0]
-    let child = document.createElement('li')
-    fetch("http://localhost:3000/categories").then(res => res.json()).then(data => {
-        child.setAttribute("id", data.length+1);
-        child.setAttribute("onclick", `clickCategory(${data.length+1})`);
-    });
-    child.innerText = newCategory.value
-    parent.appendChild(child);
 
     let objectCategory = { "name": newCategory.value }
     const url = 'http://localhost:3000/categories' 
@@ -26,6 +17,13 @@ const insertCategory = async() => {
     })
     const resultado = await respuesta.json()
     console.log(resultado)
+
+    let parent = document.getElementsByTagName('ul')[0]
+    let child = document.createElement('li')
+        child.setAttribute("id", resultado.id);
+        child.setAttribute("onclick", `clickCategory(${resultado.id})`);
+    child.innerText = newCategory.value
+    parent.appendChild(child);
     newCategory.value = ''
 }
 //Volver negros los colores del formulario
@@ -57,11 +55,4 @@ const saveCategory = () => {
         modal.hide()
         insertCategory()
     }
-}
-
-const visitPage = () =>{
-    let url = window.location.href;
-    alert(url);
-    alert(window.glob);
-    window.location='addSite.html';
 }

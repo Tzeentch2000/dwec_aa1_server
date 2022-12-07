@@ -72,6 +72,19 @@ let clickCategory = (id) => {
     selectedCategory.classList.remove("selected-category")
   }
   document.getElementById(id).classList.add('selected-category')
+
+  let idCategoria = `${id}`;
+
+  // Parámetros url
+  let params = new URLSearchParams();
+  params.append("categoria", idCategoria);
+
+  let addSite = document.getElementById("addSite");
+  let url = "file:///C:/Users/A8-PC100/Documents/dwec_aa1_server/www/addSite.html?" + params.toString();
+  addSite.href = url;
+
+
+
 }
 //console.log(window.location.href)
 //Al cargar la página que cargue las categorías
