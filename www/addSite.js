@@ -3,12 +3,26 @@
 window.onload = () => {
     console.log();
 
-    // (A) GET THE PARAMETERS
+    // conseguir los id de la url
     let params = new URLSearchParams(window.location.search);
     categoria = params.get("categoria");
+    site = params.get("site");
     
-    // (B) IT WORKS!
-    console.log(categoria);
+    // Hacer una llamada y que devuelva los datos del site en concreto
+    fetch(`http://localhost:3000/categories/${categoria}`)
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(e => {
+            if(e.id == site){
+                let formulario1 = document.forms['formulario'];
+                formulario1.elements['name'].value = e.name;
+                formulario1.elements['url'].value = e.url;
+                formulario1.elements['user'].value = e.user;
+                formulario1.elements['password'].value = e.password;
+                formulario1.elements['description'].value = e.description;
+            }
+        });
+      })
 
 };
 

@@ -15,10 +15,10 @@ let drawCategorias = (data) => {
 
 //Printar sites en la tabla cuando clicke en una categoría
 let drawTable = data =>{
-    let parent = document.getElementsByTagName('tbody')[0]
-    parent.innerHTML = ""
-    data.forEach(sites => {
-      let tr = document.createElement('tr')
+  let parent = document.getElementsByTagName('tbody')[0]
+  parent.innerHTML = ""
+  data.forEach(sites => {
+    let tr = document.createElement('tr')
       tr.id = `tr-${sites.id}`
       //Site
       let td = document.createElement('td')
@@ -54,6 +54,7 @@ let drawTable = data =>{
           //edit 
       i = document.createElement('i')
       i.setAttribute("class","fa-solid fa-pencil")
+      i.setAttribute("onclick", `editar(${sites.categoryId},${sites.id})`);
       td.appendChild(i)
 
       tr.appendChild(td)
@@ -120,4 +121,11 @@ const searchSite = async(id) => {
   }
 }
 
+const editar = (idCategoria, idSite) => {
+  let params = new URLSearchParams();
+  params.append("categoria", idCategoria);
+  params.append("site", idSite);
 
+  let url = "file:///C:/Users/A8-PC100/Documents/dwec_aa1_server/www/addSite.html?" + params.toString();
+  window.location = url;
+}
