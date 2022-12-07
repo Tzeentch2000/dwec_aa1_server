@@ -48,6 +48,7 @@ const checkCategory = () =>{
     }
 }
 
+//Cerrar el modal y guardar la categoría si todo está Ok
 const saveCategory = () => {
     if(checkCategory()){
         //Hide boostrap modal

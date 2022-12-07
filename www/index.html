@@ -38,8 +38,19 @@
             <ul></ul>
           </div>
         </div>
-        <div class="table-responsive col-md-8">
-            <table class="table table-striped table-hover">
+
+        <div class="table-responsive col-md-8 mt-5">
+            <!--SITE SEARCH BAR-->
+            <div class="input-group justify-content-center mt-3">
+              <div class="form-outline w-50">
+                <input type="search" id="searchSite" class="form-control" placeholder="Search site..."/>
+              </div>
+              <button class="btn btn-primary" id="buttonSite">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+
+            <table class="table table-striped table-hover mt-3">
               <thead>
                 <tr>
                   <th>Sitio</th>
@@ -51,7 +62,7 @@
               <tbody>         
               </tbody>
             </table>
-         </div>
+        </div>
       </div>
             <!-- Modal -->
             <div class="modal fade" id="addCategory" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

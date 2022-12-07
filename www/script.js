@@ -37,6 +37,7 @@ let drawTable = data =>{
           //folder 
       let a = document.createElement('a')
       a.href = sites.url
+      a.setAttribute('target','_blank')
       let i = document.createElement('i')
       i.setAttribute("class","fa-regular fa-folder-open")
       a.appendChild(i)
@@ -64,7 +65,8 @@ let drawTable = data =>{
 let clickCategory = (id) => {
   fetch(`http://localhost:3000/categories/${id}`)
       .then(res => res.json())
-      .then(data => drawTable(data));
+      .then(data => drawTable(data))
+  document.getElementById('buttonSite').setAttribute('onclick',`searchSite(${id})`)
   let selectedCategory = document.getElementsByClassName('selected-category')[0]
   if(selectedCategory !== undefined){
     selectedCategory.classList.remove("selected-category")
@@ -78,18 +80,31 @@ fetch("http://localhost:3000/categories").then(res => res.json()).then(data => d
 //Buscar categoría
 const searchCategory = async() => {
   document.getElementsByTagName('ul')[0].innerHTML = ""
-  const value = document.getElementById('searchCategory').value
+  const value = document.getElementById('searchCategory').value.toLowerCase()
   if(value != ""){
     const url = 'http://localhost:3000/categories'
     const respuesta = await fetch(url)
     const resultado = await respuesta.json()
-    const categories = resultado.filter(item => item.name.startsWith(value))
+    const categories = resultado.filter(item => item.name.toLowerCase().startsWith(value))
     drawCategorias(categories)
   } else {
     fetch("http://localhost:3000/categories").then(res => res.json()).then(data => drawCategorias(data));
   }
 }
 
-
+//Buscar site
+const searchSite = async(id) => {
+  document.getElementsByTagName('tbody')[0].innerHTML = ""
+  const value = document.getElementById('searchSite').value.toLowerCase()
+  if(value != ""){
+    const url = `http://localhost:3000/categories/${id}`
+    const respuesta = await fetch(url)
+    const resultado = await respuesta.json()
+    const sites = resultado.filter(item => item.name.toLowerCase().startsWith(value))
+    drawTable(sites)
+  } else {
+    clickCategory(id)
+  }
+}
 
 
