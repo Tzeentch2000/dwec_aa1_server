@@ -52,10 +52,12 @@ let drawTable = data =>{
       i.setAttribute("onclick", `putDeleteEvent(${sites.id},"${sites.name}")`)
 
           //edit 
+      a = document.createElement('a')
+      a.href = `addSite.html?categoria=${sites.CategoryId}&&site=${sites.id}`
       i = document.createElement('i')
       i.setAttribute("class","fa-solid fa-pencil")
-      i.setAttribute("onclick", `editar(${sites.categoryId},${sites.id})`);
-      td.appendChild(i)
+      a.appendChild(i)
+      td.appendChild(a)
 
       tr.appendChild(td)
       parent.appendChild(tr)
@@ -74,18 +76,15 @@ let clickCategory = (id) => {
   }
   document.getElementById(id).classList.add('selected-category')
 
-  let idCategoria = `${id}`;
+   /*let idCategoria = `${id}`;
 
   // Parámetros url
   let params = new URLSearchParams();
-  params.append("categoria", idCategoria);
+  params.append("categoria", idCategoria);*/
 
   let addSite = document.getElementById("addSite");
-  let url = "file:///C:/Users/A8-PC100/Documents/dwec_aa1_server/www/addSite.html?" + params.toString();
-  addSite.href = url;
-
-
-
+  addSite.classList.remove('d-none')
+  addSite.href = `addSite.html?categoria=${id}`;
 }
 //console.log(window.location.href)
 //Al cargar la página que cargue las categorías
@@ -121,11 +120,11 @@ const searchSite = async(id) => {
   }
 }
 
-const editar = (idCategoria, idSite) => {
+/*const editar = (idCategoria, idSite) => {
   let params = new URLSearchParams();
   params.append("categoria", idCategoria);
   params.append("site", idSite);
 
   let url = "file:///C:/Users/A8-PC100/Documents/dwec_aa1_server/www/addSite.html?" + params.toString();
   window.location = url;
-}
+}*/

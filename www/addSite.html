@@ -6,46 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="addSite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="addSite.js"></script>
 </head>
 <body>
     <header>
         <h1>Pass saver</h1>
-    </header>
+    </header> 
     <section>
-        <form action="index.html" id="formulario">
-
+        <form id="formulario">
             <div class="question">
                 <label for="name">Nombre</label>
-                <input type="text" id="name" name="name">
+                <p class="small d-none input-name">(El campo nombre es obligatorio)</p>
+                <input type="text" id="name" name="name" onblur="showError('name')">
             </div>
             <div class="question">
                 <label for="url">URL</label>
-                <input type="text" id="url" name="url">
+                <p class="small d-none input-url">(El campo url es obligatorio)</p>
+                <input type="text" id="url" name="url" onblur="showError('url')">
             </div>
             <div class="question">
                 <label for="user">User</label>
-                <input type="text" id="user" name="user">
+                <p class="small d-none input-user">(El campo user es obligatorio)</p>
+                <input type="text" id="user" name="user" onblur="showError('user')">
             </div>
             <div class="question">
                 <label for="password">Password</label>
-                <input type="text" id="password" name="password" class="password">
-                <button class="btnGenPass">a</button>
+                <p class="small d-none input-password">(El campo password es obligatorio)</p>
+                <input type="text" id="password" name="password" class="password" 
+                onblur="showError('password')">
+                <span class="btnGenPass" onclick="passwordGenerator()"><i class="fa-solid fa-key"></i></span>
             </div>
             <div class="question">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <p class="small d-none input-description">(El campo description es obligatorio)</p>
+                <textarea name="description" id="description" 
+                    cols="30" rows="8" onblur="showError('description')"></textarea>
             </div>
-
         </form>
         <div class="divBtn">
             <button class="cancelar" onclick="goToIndex()">
                 <p>Cancelar</p>
             </button>
-            <button class="save" onclick="sendForm()">
+            <button class="save" onclick="checkForm()">
                 <p>Save</p>
             </button>
-        </div>
     </section>
 </body>
 </html>
