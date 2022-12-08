@@ -30,6 +30,7 @@ const insertCategory = async() => {
 const checkOk = () =>{
         document.getElementsByClassName('small')[0].classList.add("d-none")
         document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
+        document.getElementById('categoryName').value=''
 }
 
 //Comprobar si no hay datos vacíos
@@ -41,7 +42,8 @@ const checkCategory = () =>{
         newCategory.value = ''
         return false
     } else {
-        checkOk()
+        document.getElementsByClassName('small')[0].classList.add("d-none")
+        document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
         return true
     }
 }

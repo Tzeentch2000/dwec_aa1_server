@@ -52,9 +52,12 @@ let drawTable = data =>{
       i.setAttribute("onclick", `putDeleteEvent(${sites.id},"${sites.name}")`)
 
           //edit 
+      a = document.createElement('a')
+      a.href = `addSite.html`
       i = document.createElement('i')
       i.setAttribute("class","fa-solid fa-pencil")
-      td.appendChild(i)
+      a.appendChild(i)
+      td.appendChild(a)
 
       tr.appendChild(td)
       parent.appendChild(tr)
