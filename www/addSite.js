@@ -109,6 +109,7 @@ const passwordGenerator = () => {
     showError('password')
 }
 
+
 /*function sendForm() {
 
     let formulario1 = document.forms['formulario'];

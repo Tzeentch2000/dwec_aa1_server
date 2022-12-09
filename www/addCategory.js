@@ -18,18 +18,30 @@ const insertCategory = async() => {
     const resultado = await respuesta.json()
     console.log(resultado)
 
+    let i = document.createElement('i')
+    const selectedIcon = document.getElementsByClassName('selected-icon')[0]
+    if(selectedIcon !== undefined){
+        i.className=`${selectedIcon.classList.value}`
+        i.classList.remove('fa-xl')
+        i.classList.add('fa-lg')
+        //ESCRIBIR JSON
+    }
+
     let parent = document.getElementsByTagName('ul')[0]
     let child = document.createElement('li')
         child.setAttribute("id", resultado.id);
         child.setAttribute("onclick", `clickCategory(${resultado.id})`);
     child.innerText = newCategory.value
+    child.appendChild(i)
     parent.appendChild(child);
     newCategory.value = ''
+    removeSelectIcon()
 }
 //Volver negros los colores del formulario
 const checkOk = () =>{
         document.getElementsByClassName('small')[0].classList.add("d-none")
         document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
+        //removeSelectIcon()
 }
 
 //Comprobar si no hay datos vacíos
@@ -56,3 +68,20 @@ const saveCategory = () => {
         insertCategory()
     }
 }
+
+
+const clickCategoryIcon = name =>{
+    const selectedIcon = document.getElementsByClassName('selected-icon')[0]
+    if(selectedIcon !== undefined){
+        selectedIcon.classList.remove('selected-icon')
+    }
+    document.getElementsByClassName(name)[0].classList.add('selected-icon')
+}
+
+const removeSelectIcon = () =>{
+    const selectedIcon = document.getElementsByClassName('selected-icon')[0]
+    if(selectedIcon !== undefined){
+        selectedIcon.classList.remove('selected-icon')
+    }
+}
+

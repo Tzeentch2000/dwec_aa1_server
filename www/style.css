@@ -102,11 +102,24 @@ i:hover{
     cursor: pointer;
 }
 
-.fa-trash-can:hover{
+.fa-xmark{
+    color: gray;
+}
+
+.fa-trash-can:hover, .fa-xmark:hover{
     color: red;
     transition-duration: .3s;
 }
 
 .fa-magnifying-glass{
     color: white;
+}
+
+.iconosCategoria i:hover:not(.fa-xmark){
+    color: #0d6efd;
+    transition-duration: .3s;
+}
+
+.selected-icon{
+    color: #0d6efd;
 }
