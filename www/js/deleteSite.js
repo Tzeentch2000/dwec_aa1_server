@@ -4,17 +4,9 @@ const removeSiteJs = (id) =>{
 }
 
 //Eliminar un site
-const deleteSite = async(id) =>{
-        try{
-            const url = `http://localhost:3000/sites/${id}`
-            await fetch(url,{
-              method: 'delete'
-            })
-            //await respuesta.json()
-            removeSiteJs(id)
-        }catch(error){
-            console.log(error)
-        }
+const deleteSiteOfCategory = async(id) =>{
+    deleteSite(id)
+    removeSiteJs(id)
 }
 
 //Poner en el modal de borrar los datos correspondientes
@@ -22,6 +14,6 @@ const putDeleteEvent = (id,nameTittle) => {
     console.log('bine')
     const aceptModalBtn = document.getElementById('acceptDeleteModal')
     const title = document.getElementById('nameOfSite')
-    aceptModalBtn.setAttribute('onclick',`deleteSite(${id})`)
+    aceptModalBtn.setAttribute('onclick',`deleteSiteOfCategory(${id})`)
     title.innerText = nameTittle
 }

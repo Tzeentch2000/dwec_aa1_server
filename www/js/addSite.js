@@ -1,6 +1,6 @@
 // const models = require("../../db/models");
 
-window.onload = () => {
+window.onload = async() => {
     console.log();
 
     // conseguir los id de la url
@@ -9,10 +9,8 @@ window.onload = () => {
     site = params.get("site");
     
     // Hacer una llamada y que devuelva los datos del site en concreto
-    fetch(`http://localhost:3000/categories/${categoria}`)
-      .then(res => res.json())
-      .then(data => {
-        data.forEach(e => {
+    const data = await getSitesOfCategory(categoria)
+    data.map(e => {
             if(e.id == site){
                 const formulario1 = document.forms['formulario'];
                 formulario1.elements['name'].value = e.name;
@@ -22,8 +20,6 @@ window.onload = () => {
                 formulario1.elements['description'].value = e.description;
             }
         });
-      })
-
 };
 
 function goToIndex() {
@@ -39,19 +35,8 @@ const insertSite = async(id) => {
         "password": formulario.elements['password'].value,
         "description": formulario.elements['description'].value
     }
-    const url = `http://localhost:3000/categories/${id}` 
-    respuesta = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(objectSite),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    const resultado = await respuesta.json()
-    console.log(resultado)
+    postSite(id,objectSite)
 }
-
-const updateSite = async(id)
 
 const showError = inputName =>{
     let input = document.getElementById(inputName)
@@ -92,8 +77,6 @@ const checkForm = () =>{
         } else { //Editando un site
 
         }
-    } else {
-        console.log('Mierda')
     }
 }
 
@@ -108,21 +91,3 @@ const passwordGenerator = () => {
     document.getElementById('password').value=password
     showError('password')
 }
-
-
-/*function sendForm() {
-
-    let formulario1 = document.forms['formulario'];
-
-    let name = formulario1.elements['name'];
-    let url = formulario1.elements['url'];
-    let user = formulario1.elements['user'];
-    let password = formulario1.elements['password'];
-    let description = formulario1.elements['description'];
-
-    // alert(name.value+" "+url.value + " " + user.value + " " + password.value + " " + description.value);
-
-    // document.getElementById("formulario").submit();
-    goToIndex();
-
-}*/

@@ -7,18 +7,10 @@ const insertCategory = async() => {
     let newCategory = document.getElementById('categoryName')
 
     let objectCategory = { "name": newCategory.value }
-    const url = 'http://localhost:3000/categories' 
-    respuesta = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(objectCategory),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    const resultado = await respuesta.json()
+    let resultado = await postCategory(objectCategory)
     console.log(resultado)
-
     let i = document.createElement('i')
+    
     const selectedIcon = document.getElementsByClassName('selected-icon')[0]
     if(selectedIcon !== undefined){
         i.className=`${selectedIcon.classList.value}`
@@ -51,7 +43,8 @@ const insertCategory = async() => {
 const checkOk = () =>{
         document.getElementsByClassName('small')[0].classList.add("d-none")
         document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
-        //removeSelectIcon()
+        document.getElementById('categoryName').value = ''
+        removeSelectIcon()
 }
 
 //Comprobar si no hay datos vacíos
@@ -63,7 +56,8 @@ const checkCategory = () =>{
         newCategory.value = ''
         return false
     } else {
-        checkOk()
+        document.getElementsByClassName('small')[0].classList.add("d-none")
+        document.querySelector('label[for="categoryName"]').classList.remove('errorColor')
         return true
     }
 }
@@ -85,6 +79,7 @@ const clickCategoryIcon = name =>{
     if(selectedIcon !== undefined){
         selectedIcon.classList.remove('selected-icon')
     }
+    console.log(document.getElementsByClassName(name))
     document.getElementsByClassName(name)[0].classList.add('selected-icon')
 }
 

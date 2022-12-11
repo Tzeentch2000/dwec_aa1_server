@@ -1,6 +1,6 @@
 //Escribir las categorías 
-let drawCategorias = (data) => {
-    //console.log(data);
+let drawCategorias = async(datos) => {
+    const data = await datos
     data.forEach(category => {
       let parent = document.getElementsByTagName('ul')[0]
       let child = document.createElement('li')
@@ -13,15 +13,17 @@ let drawCategorias = (data) => {
       if(arrayIcons !== null){
         let iconElement = JSON.parse(localStorage.getItem("arrayIcons")).find(element => element.categoryName === category.id) 
         if(iconElement !== undefined){
-          console.log('fds')
           let i = document.createElement('i')
           i.className = iconElement.iconClass
           child.appendChild(i)
         }
       }
-      parent.appendChild(child)
+    parent.appendChild(child)
     })
 }
+
+//Al cargar la página que cargue las categorías
+drawCategorias(getCategories())
 
 //Printar sites en la tabla cuando clicke en una categoría
 let drawTable = data =>{
@@ -75,10 +77,9 @@ let drawTable = data =>{
 }
 
 //Evento de clickado de categoría
-let clickCategory = (id) => {
-  fetch(`http://localhost:3000/categories/${id}`)
-      .then(res => res.json())
-      .then(data => drawTable(data))
+let clickCategory = async(id) => {
+  const data = await getSitesOfCategory(id)
+  drawTable(data)
   document.getElementById('buttonSite').setAttribute('onclick',`searchSite(${id})`)
   let selectedCategory = document.getElementsByClassName('selected-category')[0]
   if(selectedCategory !== undefined){
@@ -86,32 +87,21 @@ let clickCategory = (id) => {
   }
   document.getElementById(id).classList.add('selected-category')
 
-   /*let idCategoria = `${id}`;
-
-  // Parámetros url
-  let params = new URLSearchParams();
-  params.append("categoria", idCategoria);*/
-
   let addSite = document.getElementById("addSite");
   addSite.classList.remove('d-none')
   addSite.href = `addSite.html?categoria=${id}`;
 }
-//console.log(window.location.href)
-//Al cargar la página que cargue las categorías
-fetch("http://localhost:3000/categories").then(res => res.json()).then(data => drawCategorias(data));
 
 //Buscar categoría
 const searchCategory = async() => {
   document.getElementsByTagName('ul')[0].innerHTML = ""
   const value = document.getElementById('searchCategory').value.toLowerCase()
   if(value != ""){
-    const url = 'http://localhost:3000/categories'
-    const respuesta = await fetch(url)
-    const resultado = await respuesta.json()
+    const resultado = await getCategories()
     const categories = resultado.filter(item => item.name.toLowerCase().startsWith(value))
     drawCategorias(categories)
   } else {
-    fetch("http://localhost:3000/categories").then(res => res.json()).then(data => drawCategorias(data));
+    drawCategorias(getCategories())
   }
 }
 
@@ -120,21 +110,11 @@ const searchSite = async(id) => {
   document.getElementsByTagName('tbody')[0].innerHTML = ""
   const value = document.getElementById('searchSite').value.toLowerCase()
   if(value != ""){
-    const url = `http://localhost:3000/categories/${id}`
-    const respuesta = await fetch(url)
-    const resultado = await respuesta.json()
-    const sites = resultado.filter(item => item.name.toLowerCase().startsWith(value))
+    const data = await getSitesOfCategory(id)
+    const sites = data.filter(item => item.name.toLowerCase().startsWith(value))
     drawTable(sites)
   } else {
     clickCategory(id)
   }
 }
 
-/*const editar = (idCategoria, idSite) => {
-  let params = new URLSearchParams();
-  params.append("categoria", idCategoria);
-  params.append("site", idSite);
-
-  let url = "file:///C:/Users/A8-PC100/Documents/dwec_aa1_server/www/addSite.html?" + params.toString();
-  window.location = url;
-}*/
