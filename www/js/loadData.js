@@ -42,7 +42,7 @@ let drawTable = data =>{
       tr.appendChild(td)
       //Created At
       td = document.createElement('td')
-      td.innerText = sites.createdAt
+      td.innerText = sites.createdAt.substring(0, 10)
       tr.appendChild(td)
       //Created Icons
       td = document.createElement('td')
