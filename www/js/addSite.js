@@ -28,12 +28,13 @@ function goToIndex() {
 
 const insertSite = async(id) => {
     const formulario = document.forms['formulario'];
+    //console.log(formulario.elements['description'].value)
     let objectSite = {
         "name": formulario.elements['name'].value,
         "url": formulario.elements['url'].value,
         "user": formulario.elements['user'].value,
         "password": formulario.elements['password'].value,
-        "description": formulario.elements['description'].value
+        "description": formulario.elements['description'].value === '' ? "" : formulario.elements['description'].value
     }
     postSite(id,objectSite)
 }
