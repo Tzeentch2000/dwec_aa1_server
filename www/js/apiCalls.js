@@ -10,6 +10,18 @@ const getSitesOfCategory = async(id) =>{
       .then(data => {return data})
 }
 
+const deleteCategory = async(id) => {
+    try{
+        const url = `http://localhost:3000/categories/${id}`
+        await fetch(url,{
+          method: 'delete'
+        })
+        //await respuesta.json()
+    }catch(error){
+        console.log(error)
+    }
+}
+
 const deleteSite = async(id) =>{
     try{
         const url = `http://localhost:3000/sites/${id}`

@@ -90,6 +90,10 @@ let clickCategory = async(id) => {
   let addSite = document.getElementById("addSite");
   addSite.classList.remove('d-none')
   addSite.href = `addSite.html?categoria=${id}`;
+
+  const buttonDelete = document.getElementById('eliminarCategoriaButton')
+  buttonDelete.classList.remove('d-none')
+  buttonDelete.setAttribute('onclick',`deleteCategoryOfCategories(${id})`)
 }
 
 //Buscar categoría

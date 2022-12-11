@@ -3,6 +3,13 @@ const removeSiteJs = (id) =>{
     tr.remove()
 }
 
+//Eliminar category
+const deleteCategoryOfCategories = async(id) =>{
+    const element = document.getElementById(id)
+    element.remove()
+    deleteCategory(id)
+}
+
 //Eliminar un site
 const deleteSiteOfCategory = async(id) =>{
     deleteSite(id)
