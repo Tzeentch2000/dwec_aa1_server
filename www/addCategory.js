@@ -23,8 +23,18 @@ const insertCategory = async() => {
     if(selectedIcon !== undefined){
         i.className=`${selectedIcon.classList.value}`
         i.classList.remove('fa-xl')
+        i.classList.remove('selected-icon')
         i.classList.add('fa-lg')
-        //ESCRIBIR JSON
+        //ESCRIBIR LocalStorage
+        let arrayIcons = localStorage.getItem("arrayIcons")
+        if(arrayIcons === null){
+            let icons = [{"categoryName":resultado.id,"iconClass":`${i.className}`}]
+            localStorage.setItem("arrayIcons", JSON.stringify(icons))
+        } else {
+            arrayIcons = JSON.parse(localStorage.getItem("arrayIcons"));
+            arrayIcons.push({"categoryName":resultado.id,"iconClass":`${i.className}`})
+            localStorage.setItem("arrayIcons", JSON.stringify(arrayIcons))
+        }
     }
 
     let parent = document.getElementsByTagName('ul')[0]

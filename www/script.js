@@ -9,6 +9,16 @@ let drawCategorias = (data) => {
       // child.innerText = JSON.stringify(category)
       //console.log(category.id)
       child.innerText = category.name
+      let arrayIcons = localStorage.getItem("arrayIcons")
+      if(arrayIcons !== null){
+        let iconElement = JSON.parse(localStorage.getItem("arrayIcons")).find(element => element.categoryName === category.id) 
+        if(iconElement !== undefined){
+          console.log('fds')
+          let i = document.createElement('i')
+          i.className = iconElement.iconClass
+          child.appendChild(i)
+        }
+      }
       parent.appendChild(child)
     })
 }
