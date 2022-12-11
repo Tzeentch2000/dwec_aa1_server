@@ -8,6 +8,8 @@ const deleteCategoryOfCategories = async(id) =>{
     const element = document.getElementById(id)
     element.remove()
     deleteCategory(id)
+    document.getElementById('addSite').classList.add('d-none')
+    document.getElementById('eliminarCategoriaButton').classList.add('d-none')
 }
 
 //Eliminar un site
