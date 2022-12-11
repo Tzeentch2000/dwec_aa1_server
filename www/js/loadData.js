@@ -42,7 +42,8 @@ let drawTable = data =>{
       tr.appendChild(td)
       //Created At
       td = document.createElement('td')
-      td.innerText = sites.createdAt.substring(0, 10)
+      let fecha = sites.createdAt.substring(0, 10).split('-')
+      td.innerText = `${fecha[2]}-${fecha[1]}-${fecha[0]}`
       tr.appendChild(td)
       //Created Icons
       td = document.createElement('td')
